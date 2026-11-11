@@ -31,7 +31,7 @@ The output tokens are identical to the fp32 baseline. **The lesson:** decode is 
 ## 3. `torch.compile` & CUDA graphs · [`notebooks/3_compile_and_cuda_graphs.ipynb`](notebooks/3_compile_and_cuda_graphs.ipynb)
 
 - **Cost of one launch:** we swept one elementwise op from 1 to 16M elements. Below about 64K elements the time is flat at **~7.7 µs**, which is pure launch overhead.
-- **Graph breaks:** a decode step containing `.item()`, an `if` on tensor data, and `print` compiled into 3 graphs with 2 breaks. Rewriting it to stay on the device gave **one graph (`fullgraph=True`) and a 1.8× speedup**.
+- **Graph breaks:** a decode step containing `.item()`, an `if` on tensor data, and `print` compiled into 3 graphs with 2 breaks. Rewriting it to stay on the device gave **one graph (`fullgraph=True`) and a 1.8× speedup, even on CPU**.
 - **CUDA graphs by hand:** capture a decode step once, then replay it with a single launch. This requires static input and output buffers, fixed shapes, and no host syncs.
 
 ![Launch overhead](docs/img/launch_overhead.png)
