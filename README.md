@@ -4,6 +4,15 @@
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-profiler%20%C2%B7%20compile-ee4c2c) ![CUDA](https://img.shields.io/badge/CUDA-events%20%C2%B7%20graphs-76b900) ![GPU](https://img.shields.io/badge/GPU-T4-black) ![Perfetto](https://img.shields.io/badge/traces-Perfetto-blue)
 
+**Notebooks**: for the best reading experience, open them in nbviewer (full-page rendering) or Colab:
+
+| Notebook | Read | Run |
+|---|---|---|
+| `1_roofline.ipynb` | [![nbviewer](https://img.shields.io/badge/view-nbviewer-orange?logo=jupyter)](https://nbviewer.org/github/bloch-ai-engineering/gpu-perf-lab/blob/main/notebooks/1_roofline.ipynb) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bloch-ai-engineering/gpu-perf-lab/blob/main/notebooks/1_roofline.ipynb) |
+| `2_decode_optimization.ipynb` | [![nbviewer](https://img.shields.io/badge/view-nbviewer-orange?logo=jupyter)](https://nbviewer.org/github/bloch-ai-engineering/gpu-perf-lab/blob/main/notebooks/2_decode_optimization.ipynb) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bloch-ai-engineering/gpu-perf-lab/blob/main/notebooks/2_decode_optimization.ipynb) |
+| `3_compile_and_cuda_graphs.ipynb` | [![nbviewer](https://img.shields.io/badge/view-nbviewer-orange?logo=jupyter)](https://nbviewer.org/github/bloch-ai-engineering/gpu-perf-lab/blob/main/notebooks/3_compile_and_cuda_graphs.ipynb) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bloch-ai-engineering/gpu-perf-lab/blob/main/notebooks/3_compile_and_cuda_graphs.ipynb) |
+
+
 ## 1. Roofline & arithmetic intensity · [`notebooks/1_roofline.ipynb`](notebooks/1_roofline.ipynb)
 
 We timed kernels with `torch.cuda.Event`, because `time.time()` only measures how fast Python queued the work. Each kernel was then placed on the T4's roofline: 8 TFLOP/s peak, 320 GB/s bandwidth, with the ridge at about 25 FLOP/byte.
